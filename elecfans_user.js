@@ -43,26 +43,21 @@
             /* 展开全文 */
             //      这里判断 ajax后 未登录则缩起文章 改变css样式 若改变则还原
             // http://www.elecfans.com/article/*
-            $("div.simditor-body") && $("div.simditor-body").each(function() {
+            $("div.simditor-body").length != '0' && $("div.simditor-body").each(function() {
                 var _this = $(this);
                 var observer = new MutationObserver(function(mutations) {//构造函数回调
                     mutations.forEach(function(record) {
                         if (record.type == "attributes") {//监听属性
-                            //console.log("html的属性发生了变化");
                             //展开全文
                             $('div.simditor-body').css('height', '100%');
                             $('.seeHide').remove();
-
-                        }
-                        if (record.type == 'childList') {//监听结构发生变化
-                            //console.log("html的结构发生了变化")
                         }
                     });
                 });
                 observer.observe(_this[0], config);
             });
             // http://www.elecfans.com/d/*  dianzichangshi 
-            $('.article-content') && $('.article-content').each(function() {
+            $('.article-content').length != '0' && $('.article-content').each(function() {
                 var _this = $(this);
                 var observer = new MutationObserver(function(mutations) {//构造函数回调
                     mutations.forEach(function(record) {
@@ -76,19 +71,14 @@
                 observer.observe(_this[0], config);
             });
             // 元器件
-            $("div.max-wImg") && $("div.max-wImg").each(function() {
+            $("div.max-wImg").length != '0' && $("div.max-wImg").each(function() {
                 var _this = $(this);
                 var observer = new MutationObserver(function(mutations) {//构造函数回调
                     mutations.forEach(function(record) {
                         if (record.type == "attributes") {//监听属性
-                            //console.log("html的属性发生了变化");
-                            //展开
                             $('div.max-wImg').css('height', '100%');
                             //去掉多余
                             $('.seeHide').remove();
-                        }
-                        if (record.type == 'childList') {//监听结构发生变化
-                            //console.log("html的结构发生了变化")
                         }
                     });
                 });
@@ -99,8 +89,8 @@
                 var _this = $(this);
                 var observer = new MutationObserver(function(mutations) {//构造函数回调
                     mutations.forEach(function(record) {
-                        if (record.type == "childList") {//监听属性
-                            $("div#remainLogBox") && $("div#remainLogBox").remove();
+                        if (record.type == "childList" && $("div#remainLogBox").length !== '0') {//监听dom节点
+                            $("div#remainLogBox").remove();
                             $("html").css("overflow-y", 'auto');
                         }
                     });
@@ -119,7 +109,10 @@
                 $("#AD-background").remove();
                 $('.aside').remove();
                 $('html body section.section div.clearfix')[0].remove();
-                $('.main-wrap').css('margin-right', '0px');
+                $('div.col-sub').length != 0 && $('div.col-sub').remove()
+                $('div.main-wrap').css('margin-right', '0px')
+                $('div.main-wrap').css('padding-right', '0px')
+                $('div.main-wrap').css('border-right', '0px')
                 $('.footer_bannerAd').remove();
                 $('html body section.section article.amain div.main-wrap iframe').remove();
                 $('#new-middle-berry').remove();
@@ -133,9 +126,10 @@
                 $('.seeHide').remove();
                 $('.company-ad').remove();
                 $('.col-sub').remove();
-                $('.main-wrap').css('margin-right', '0px');
-                $('.main-wrap').css('padding-right', '0px');
-                $('.main-wrap').css('border-right', '0px');
+                $('div.col-sub').length != 0 && $('div.col-sub').remove()
+                $('div.main-wrap').css('margin-right', '0px')
+                $('div.main-wrap').css('padding-right', '0px')
+                $('div.main-wrap').css('border-right', '0px')
             }
 
             //      元器件 http://www.elecfans.com/yuanqijian/*
@@ -161,11 +155,7 @@
                 var observer = new MutationObserver(function(mutations) {//构造函数回调
                     mutations.forEach(function(record) {
                         if (record.type == "attributes") {//监听属性
-                            //console.log("html的属性发生了变化");
                             $("div.limit_height").removeClass("limit_height");
-                        }
-                        if (record.type == 'childList') {//监听结构发生变化
-                            //console.log("html的结构发生了变化")
                         }
                     });
                 });
